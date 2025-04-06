@@ -1,0 +1,22 @@
+
+
+<div class = 'container-fluid background-image d-flex flex-column align-items-center justify-content-center pt-3 g-0'>
+  <h2 class = 'text-center mb-3 text-color'>Découvrez nos offres de billets...</h2>
+  <div *ngFor="let offer of offers()">
+    <div class="card mb-3 ms-2 me-3 text-center bg-light card-fixed-width" >
+        <div class="row">
+          <div class="col-5 d-flex flex-column align-items-center justify-content-center">
+            <img class="img custom-img" src={{offer.picture}}  alt={{offer.name}}>
+          </div>
+          <div class="col-7">
+            <div class="card-body">
+              <h3 class="card-title">{{offer.name}}</h3>
+              <h5 class="card-title">{{offer.description}}</h5>
+              <p class="card-text">{{offer.unitprice}} € le billet</p>
+              <button type="button" class="btn btn-dark">Ajouter au panier</button>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

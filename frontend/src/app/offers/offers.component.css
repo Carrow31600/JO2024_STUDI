@@ -1,0 +1,50 @@
+
+@media (max-width: 576px) {
+    .custom-img {
+      width: 50%;
+    }
+  }
+
+  @media (min-width: 577px) and (max-width: 768px) {
+    .custom-img {
+      width: 50%;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .custom-img {
+      width: 50%;
+    }
+  }
+
+
+
+/* Pas d'image de cover pour les petits écrans (téléphone) */
+@media (max-width: 576px) {
+  .background-image {
+    background-image: none;
+  }
+
+ }
+
+/* Affiche de l'image de fond sur les écrans de taille moyenne à grande*/
+@media (min-width: 577px) {
+  .background-image {
+    background-image: url('/offers_cover.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 500px;
+  }
+}
+
+
+.card-fixed-width {
+  width: 96%; 
+  max-width: 500px; 
+  margin: 0 auto; 
+}
+
+.text-color{
+  color: white;
+}

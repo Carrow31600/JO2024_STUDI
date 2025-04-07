@@ -1,0 +1,21 @@
+<!-- src/app/pages/cart.component.html -->
+<div>
+    <h2>Panier</h2>
+  
+    <div *ngIf="cartItems.length > 0; else noItems">
+      <ul>
+        <!-- Parcourez les éléments du panier -->
+        <li *ngFor="let offer of cartItems">
+          <strong>{{ offer.name }}</strong><br />
+          Description: {{ offer.description }}<br />
+          Prix: {{ offer.unitprice }} €
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Affichage d'un message si le panier est vide -->
+    <ng-template #noItems>
+      <p>Votre panier est vide.</p>
+    </ng-template>
+  </div>
+  

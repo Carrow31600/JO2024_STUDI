@@ -31,8 +31,8 @@
 @media (min-width: 577px) {
   .background-image {
     background-image: url('/offers_cover.jpg');
-    background-size: cover;
-    background-position: center;
+    /*background-size: cover;*/
+    background-position:top;
     background-repeat: no-repeat;
     min-height: 500px;
   }
@@ -47,4 +47,8 @@
 
 .text-color{
   color: white;
+}
+
+.backcolor{
+  background-color: black;
 }

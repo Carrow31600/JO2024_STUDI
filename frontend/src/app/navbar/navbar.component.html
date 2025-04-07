@@ -21,16 +21,16 @@
 <!-- pour gérer le lien de connexion -->
         
           <!-- Si l'utilisateur n'est pas connecté, affiche "Connexion" -->
-          <li class="nav-item dropdown">
-            <a class="nav-link" routerLink="/">Connexion</a>
+          <li class="nav-item dropdown" *ngIf="!username">
+            <a class="nav-link" routerLink="/login">Connexion</a>
           </li>
 
           <!-- Si l'utilisateur est connecté, affiche "Mon compte" -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mon compte</a>
+          <li class="nav-item dropdown" *ngIf="username">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mon compte ({{ username }})</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/">Gérer mon compte</a></li>
-              <li><a class="dropdown-item" >Déconnexion</a></li>
+              <li><a class="dropdown-item" routerLink="/account">Gérer mon compte</a></li>
+              <li><a class="dropdown-item" (click)="logout()">Déconnexion</a></li>
             </ul>
           </li>
         

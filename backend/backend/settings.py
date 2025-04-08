@@ -41,9 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'offers',
+    'competition',
+    'sites',
+    'sports',
     'authentication',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -145,12 +149,14 @@ REST_FRAMEWORK = {
         # 'rest_framework.authentication.BasicAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 
 # Configuration CORS pour accepter les appels API depuis le server angular
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
+    "https://jo-2024-studi.vercel.app",
 ]   
 
 CORS_ALLOW_METHODS = [

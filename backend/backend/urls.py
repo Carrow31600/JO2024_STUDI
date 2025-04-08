@@ -4,11 +4,17 @@ from django.conf import settings
 from django.urls import include, path
 from rest_framework import routers
 from offers.urls import router as offers_router
+from sites.urls import router as sites_router
+from sports.urls import router as sports_router
+from competition.urls import router as competition_router
 from django.conf.urls.static import static
 
 
 router = routers.DefaultRouter()
 router.registry.extend(offers_router.registry)
+router.registry.extend(sites_router.registry)
+router.registry.extend(competition_router.registry)
+router.registry.extend(sports_router.registry)
 
 
 urlpatterns = [

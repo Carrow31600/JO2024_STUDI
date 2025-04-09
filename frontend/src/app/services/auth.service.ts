@@ -4,12 +4,13 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { IauthResponse } from '../interfaces/auth.interface';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8000/auth/login/'; // URL API auth Django
+  private apiUrl = environment.loginApiUrl; // URL API auth Django
   private userSubject = new BehaviorSubject<string | null>(null);
   user$ = this.userSubject.asObservable(); // Observable pour suivre l'état utilisateur
 

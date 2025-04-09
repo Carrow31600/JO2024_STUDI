@@ -2,6 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Ioffer } from '../interfaces/Offer.interface';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -12,7 +13,7 @@ import { Ioffer } from '../interfaces/Offer.interface';
 export class OfferService {
   private http = inject(HttpClient);
   private offers = signal<Ioffer[]>([])
-  readonly apiUrl = "http://127.0.0.1:8000/offer/";
+  readonly apiUrl = environment.offerApiUrl;
 
 
   getOffers(): Observable<Ioffer[]> {

@@ -1,5 +1,10 @@
 export const environment = {
     production: true,
-    apiUrl: 'carrow31600.pythonanywhere.com'  // Backend en ligne
+    offerApiUrl : "https://carrow31600.pythonanywhere.com/offer/",
+    siteApiUrl : "https://carrow31600.pythonanywhere.com/site/",
+    competitionApiUrl : 'https://carrow31600.pythonanywhere.com/competition/',
+    sportApiUrl : 'https://carrow31600.pythonanywhere.com/sport/',
+    loginApiUrl : 'https://carrow31600.pythonanywhere.com/auth/login/',
+    logoutApiUrl : 'https://carrow31600.pythonanywhere.com/auth/logout/'
   };
   

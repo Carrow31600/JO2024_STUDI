@@ -1,3 +1,7 @@
+from dotenv import load_dotenv
+load_dotenv()  # Charge les variables d'environnement depuis le fichier .env
+
+
 """
 Django settings for backend project.
 
@@ -84,16 +88,37 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'studijo2024',
-        'USER' : 'root',
-        'PASSWORD' : 'ELou@ne2008$$',
-        'HOST' : 'localhost',
-        'PORT' : '3306'
+
+
+# Détection de l'environnement (production ou développement)
+if 'PYTHONANYWHERE_DOMAIN' in os.environ:
+    # Configuration pour PythonAnywhere (production)
+    DEBUG = False
+    ALLOWED_HOSTS = ['carrow31600.pythonanywhere.com']
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'carrow31600$jo2024',
+            'USER': 'carrow31600',
+            'PASSWORD': os.environ.get('DB_PASSWORD'),  # Récupère le mot de passe de la variable d'environnement
+            'HOST': 'carrow31600.mysql.pythonanywhere-services.com',
+            'PORT': '3306',
+        }
     }
-}
+else:
+    # Configuration pour le développement local
+    DEBUG = True
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',  # Ou 'sqlite3' si tu préfères
+            'NAME': 'studijo2024',
+            'USER': 'root',
+            'PASSWORD': 'ELou@ne2008$$',  # Mot de passe local pour MySQL
+            'HOST': 'localhost',  # Localhost pour ton environnement local
+            'PORT': '3306',
+        }
+    }
 
 
 # Password validation
@@ -131,6 +156,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

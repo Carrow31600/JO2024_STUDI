@@ -1,1 +1,40 @@
-<p>competition works!</p>
+<div class="container">
+    <form [formGroup]="competitionForm">
+        <div formArrayName="competitions" class="table-responsive mt-3">
+          <table class="table table-hover">
+            <thead class="table-warning">
+              <tr>
+                <th>Date</th>
+                <th>Site</th>
+                <th>Sport</th>
+                <th>Offre</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let control of competitionsFormArray.controls; let i = index" [formGroupName]="i">
+                <ng-container *ngIf="competitions()?.length > i">
+                  <td>{{ competitions()[i].date }}</td>
+                  <td>{{ competitions()[i].site_name }}</td>
+                  <td>{{ competitions()[i].sport_name }}</td>
+                  <td>
+                    <select formControlName="selectedOffer" class="form-select">
+                      <option value="">Sélectionner une offre</option>
+                      <option *ngFor="let offer of offers" [value]="offer.id">{{ offer.name }}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-dark" (click)="addToCart(i)">Ajouter au panier</button>
+                  </td>
+                </ng-container>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    
+</div>
+
+
+
+  

@@ -18,14 +18,14 @@ export class CompetitionService {
   readonly apiUrl = environment.competitionApiUrl;
 
 
-  getCompetition(): Observable<Icompetition[]> {
+  getCompetitions(): Observable<Icompetition[]> {
     return this.http.get<Icompetition[]>(this.apiUrl).pipe(
       tap(competitions => this.competitions.set(competitions)),
       catchError(this.handleError)
     );
   }
 
-  getCompetitionSignal() {
+  getCompetitionsSignal() {
     return this.competitions;
   }
 

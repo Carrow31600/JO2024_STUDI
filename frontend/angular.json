@@ -64,15 +64,12 @@
               "buildOptimizer": true
             },
             "development": {
-              "optimization": false,
-              "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true,
-              "aot": false,
-              "vendorChunk": true
+              "buildOptimizer": false,
+              "aot": false
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

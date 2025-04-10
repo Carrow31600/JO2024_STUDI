@@ -52,7 +52,7 @@ export class AuthService {
         };
   
         return this.http.post<void>(
-          'http://127.0.0.1:8000/auth/logout/',
+          environment.loginApiUrl,
           { refresh: refreshToken },
           headers
         ).pipe(

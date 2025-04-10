@@ -1,0 +1,20 @@
+
+<div class="container m-5 mx-auto">
+    <h1 class="text-center">Les Sports Olympiques : Une Célébration de la Diversité et de l'Excellence</h1>
+
+    <p>Les Jeux Olympiques rassemblent une multitude de disciplines sportives, chacune mettant en lumière les capacités physiques et mentales des athlètes du monde entier. Des épreuves d'athlétisme, comme le sprint et le marathon, aux sports d'équipe tels que le football et le basketball, les JO offrent un spectacle varié et captivant. Les sports aquatiques, tels que la natation et le plongeon, démontrent la maîtrise de l'eau, tandis que les sports de combat, comme le judo et la boxe, exigent stratégie et force.</p>
+    <br>
+    <p>Les Jeux incluent également des sports plus techniques, tels que le tir à l'arc et l'escrime, qui nécessitent précision et concentration. Les épreuves de gymnastique impressionnent par leur grâce et leur agilité, alors que les sports équestres célèbrent l'harmonie entre l'humain et l'animal. Chaque discipline olympique incarne les valeurs de fair-play, de dépassement de soi et d'unité, faisant des JO une vitrine unique de l'excellence sportive mondiale.</p>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center">
+        <div  *ngFor =  'let sport of sports()' class="col mt-3">
+            <div class="card mt-3 mb-3 h-100 " >
+                <img src={{sport.picture}}  class="card-img-top" alt="{{sport.name}}">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{sport.name}}</h5>
+                    <p class="card-text">{{sport.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

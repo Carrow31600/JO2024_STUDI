@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { OfferService } from '../services/OfferService';
-import { CartService } from '../services/cart.service';
-import { Ioffer } from '../interfaces/Offer.interface';
+import { OfferService } from '../../services/OfferService';
+import { CartService } from '../../services/cart.service';
+import { Ioffer } from '../../interfaces/Offer.interface';
 
 
 @Component({

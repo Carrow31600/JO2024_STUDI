@@ -1,0 +1,19 @@
+
+<div class="container m-5 mx-auto">
+    <h1 class="text-center">Les Sites Olympiques : Des Espaces d'Excellence et d'Héritage Durable</h1>
+
+    <p>Les Jeux Olympiques (JO) sont un événement sportif mondial qui se déroule tous les quatre ans, alternant entre les Jeux d'été et d'hiver. Les sites des JO sont soigneusement sélectionnés pour accueillir diverses compétitions sportives, cérémonies et activités culturelles. Chaque ville hôte investit massivement dans des infrastructures modernes, telles que des stades, des piscines olympiques, des villages pour les athlètes et des centres de presse. Ces installations sont conçues pour offrir des conditions optimales aux sportifs et pour impressionner les spectateurs du monde entier.</p>
+    <br>
+    <p>Les sites olympiques ne se limitent pas aux installations sportives. Ils incluent également des espaces dédiés aux célébrations culturelles, aux expositions et aux activités communautaires, visant à promouvoir l'esprit olympique de paix et de fraternité. Après les Jeux, ces sites sont souvent reconvertis pour un usage public, laissant un héritage durable à la ville hôte et à ses habitants. Les JO sont ainsi une occasion unique de transformer des espaces urbains et de créer des lieux emblématiques qui marquent l'histoire du sport et de la culture mondiale.</p>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center">
+        <div  *ngFor =  'let site of sites()' class="col mt-3">
+            <div class="card mt-3 mb-3 h-100 " >
+                <img src={{site.picture}}  class="card-img-top" alt="{{site.name}}">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{site.name}}</h5>
+                    <p class="card-text">{{site.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

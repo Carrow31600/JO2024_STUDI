@@ -1,0 +1,28 @@
+@media (max-width: 576px) {
+    .card {
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .card-body {
+      padding: 1rem;
+    }
+    .card .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem; 
+    }
+    .card-body select {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+
+
+  .bg-filters{
+    background-image: url('/fond-epreuves.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover; /* L'image s'ajuste pour couvrir toute la zone */
+    background-position: center center; /* L'image est centrée dans la zone */
+    width: 100%; /*S'assurer que la largeur est de 100% de l'élément parent*/
+
+  }
+  

@@ -1,8 +1,9 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Icompetition } from '../interfaces/competition.interface';
+import { IcompetitionFilter } from '../interfaces/competitionfiltersinterface';
 
 
 
@@ -18,8 +19,17 @@ export class CompetitionService {
   readonly apiUrl = environment.competitionApiUrl;
 
 
-  getCompetitions(): Observable<Icompetition[]> {
-    return this.http.get<Icompetition[]>(this.apiUrl).pipe(
+  getCompetitions(filters: IcompetitionFilter = {}): Observable<Icompetition[]> {
+    let params = new HttpParams();
+  
+    // Ajouter uniquement les filtres définis
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        params = params.set(key, value);
+      }
+    });
+  
+    return this.http.get<Icompetition[]>(this.apiUrl, { params }).pipe(
       tap(competitions => this.competitions.set(competitions)),
       catchError(this.handleError)
     );

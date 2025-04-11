@@ -5,10 +5,11 @@
     <div *ngIf="cartItems.length > 0; else noItems">
       <ul>
         <!-- Parcourez les éléments du panier -->
-        <li *ngFor="let offer of cartItems">
-          <strong>{{ offer.name }}</strong><br />
-          Description: {{ offer.description }}<br />
-          Prix: {{ offer.unitprice }} €
+        <li *ngFor="let item of cartItems">
+          <strong>{{ item.offer.name }}</strong><br />
+          Description: {{ item.offer.description }}<br />
+          Prix: {{ item.offer.unitprice }} €<br />
+          Compétition : {{ item.competition.sport_name }} - {{ item.competition.site_name }} le {{ item.competition.date }}
         </li>
       </ul>
     </div>
@@ -19,3 +20,5 @@
     </ng-template>
   </div>
   
+<!-- pour valider le panier -->
+ <!-- (click)="submitOrder()" -->

@@ -22,10 +22,10 @@ export class OffersComponent implements OnInit {
 }
 
   // Méthode pour ajouter une offre au panier
-  addToCart(offer: Ioffer): void {
-    this.cartserv.addToCart(offer);  // Ajouter l'offre au panier
-    console.log('Offre ajoutée au panier:', offer);
-  }
+  // addToCart(offer: Ioffer): void {
+  //   this.cartserv.addToCart(offer);  // Ajouter l'offre au panier
+  //   console.log('Offre ajoutée au panier:', offer);
+  // }
 }
 
 

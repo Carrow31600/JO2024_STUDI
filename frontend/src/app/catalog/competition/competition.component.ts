@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Ioffer } from 'src/app/interfaces/Offer.interface';
+import { CartService } from 'src/app/services/cart.service';
 import { CompetitionService } from 'src/app/services/competition.service';
 import { OfferService } from 'src/app/services/OfferService';
 
@@ -17,6 +18,7 @@ export class CompetitionComponent implements OnInit {
   private competitionserv = inject(CompetitionService);
   private offerService = inject(OfferService);
   private fb = inject(FormBuilder);
+  private cartService = inject(CartService);
 
   competitions = this.competitionserv.getCompetitionsSignal();
   offers: Ioffer[] = [];
@@ -63,11 +65,13 @@ export class CompetitionComponent implements OnInit {
 
   addToCart(index: number): void {
     const competitionControl = this.competitionsFormArray.at(index);
-    const selectedOfferId = competitionControl.get('selectedOffer')?.value;
-    const competitionId = competitionControl.get('competitionId')?.value;
+    const selectedOfferId = Number(competitionControl.get('selectedOffer')?.value);
+    const competition = this.competitions()[index];
+    const offer = this.offers.find(o => o.id === selectedOfferId);
 
-    if (selectedOfferId && competitionId) {
-      console.log('Ajout au panier:', { competitionId, selectedOfferId });
+    if (offer && competition) {
+      this.cartService.addToCart({ offer, competition });
+      console.log('Ajouté au panier :', { offer, competition });
     } else {
       console.log('Veuillez sélectionner une offre.');
     }

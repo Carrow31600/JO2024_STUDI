@@ -1,18 +1,75 @@
-<!-- src/app/pages/cart.component.html -->
 <div>
     <h2>Panier</h2>
-  
-    <div *ngIf="cartItems.length > 0; else noItems">
-      <ul>
-        <!-- Parcourez les éléments du panier -->
-        <li *ngFor="let item of cartItems">
-          <strong>{{ item.offer.name }}</strong><br />
-          Description: {{ item.offer.description }}<br />
-          Prix: {{ item.offer.unitprice }} €<br />
-          Compétition : {{ item.competition.sport_name }} - {{ item.competition.site_name }} le {{ item.competition.date }}
-        </li>
-      </ul>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div *ngIf="cartItems.length > 0 && cardForms.length === cartItems.length; else noItems">
+
+        <div *ngFor="let item of cartItems; let i = index">
+            <div class="card mb-3">
+              <div class="row g-0">
+                <div>
+                  <div class="card-body">
+                    <div class = 'd-flex'>
+                      <p class="card-title fw-bold" >{{ item.offer.name }} - {{ item.competition.sport_name }}</p>
+                      <p class="card-text fw-semibold"> - {{ item.competition.site_name }} le {{ item.competition.date }} à {{item.competition.hour}}</p>
+                    </div>
+                    <form [formGroup]="cardForms[i]">
+                      <div class="row align-items-center">
+                        <div class="form-group col-3 text-center">
+                          <label [for]="'prixUnitaire' + i">Prix unitaire</label>
+                          <input [id]="'prixUnitaire' + i" formControlName="prixUnitaire" class="form-control" readonly />
+                        </div>
+                        <div class="form-group col-2 text-center">
+                          <label [for]="'quantite' + i">Quantité</label>
+                          <select [id]="'quantite' + i" formControlName="quantite" class="form-control">
+                            <option *ngFor="let quantite of getValidQuantities(cartItems[i].offer.name)" [value]="quantite">
+                              {{ quantite }}
+                            </option>
+                          </select>
+                        </div>
+                        <div class="form-group col-4 text-center">
+                          <label [for]="'montantTotal' + i">Montant total</label>
+                          <input [id]="'montantTotal' + i" formControlName="montantTotal" class="form-control" readonly />
+                        </div>
+                        <div class="col-3 d-flex justify-content-center align-items-end">
+                          <button class="btn btn-danger" (click)="removeItem(i)">Supprimer</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+          </div>
+      </div>
     </div>
+
+
+
+    <!-- RECAPITULATIF DU PANIER -->
+    <div class="col-6 bg-warning">
+      col 2
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
   
     <!-- Affichage d'un message si le panier est vide -->
     <ng-template #noItems>

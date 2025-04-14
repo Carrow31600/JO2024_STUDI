@@ -23,6 +23,11 @@ export class CartService {
   getCart(): CartItem[] {
     return this.cart;
   }
+
+    // Met à jour le panier
+    setCart(cartItems: CartItem[]): void {
+      this.cart = cartItems;
+    }
   // compte le nombre d'offres dans le panier
   getCartCount(): number {
     return this.cart.length;

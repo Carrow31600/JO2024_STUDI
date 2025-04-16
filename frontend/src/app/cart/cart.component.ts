@@ -119,6 +119,13 @@ get totalEpreuves(): number {
 
 // ENVOI DU PANIER AU BACKEND
 submitOrder(): void {
+
+  if (!this.authService.isAuthenticated()) {
+    // Si l'utilisateur n'est pas authentifié, redirige vers la page de connexion
+    this.router.navigate(['/login']);
+    return; // On arrête l'exécution de la fonction
+  }
+  
   const userId = Number(this.authService.getUserId()); // Conversion string → number
   const orderRequests: Observable<IorderResponse>[] = [];
 

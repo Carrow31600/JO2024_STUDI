@@ -8,6 +8,9 @@ import { Iorder } from '../interfaces/order.interface';
 import { forkJoin, Observable } from 'rxjs';
 import { IorderResponse } from '../interfaces/orderresponse.interface';
 
+
+declare var bootstrap: any;
+
 @Component({
   selector: 'app-cart',
   imports: [CommonModule,ReactiveFormsModule],
@@ -21,6 +24,7 @@ export class CartComponent implements OnInit {
   private router = inject(Router);
   private fb = inject(FormBuilder);
   cartItems = this.cartserv.getCart();  // Récupére les articles du panier
+  orderSuccess = false;
 
   ngOnInit() {
     this.initializeForms();
@@ -119,14 +123,22 @@ get totalEpreuves(): number {
 
 // ENVOI DU PANIER AU BACKEND
 submitOrder(): void {
-
   if (!this.authService.isAuthenticated()) {
-    // Si l'utilisateur n'est pas authentifié, redirige vers la page de connexion
     this.router.navigate(['/login']);
-    return; // On arrête l'exécution de la fonction
+    return;
   }
-  
-  const userId = Number(this.authService.getUserId()); // Conversion string → number
+
+  // Afficher la modale
+  const modalElement = document.getElementById('confirmationModal');
+  if (modalElement) {
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
+  }
+}
+
+
+confirmOrder(): void {
+  const userId = Number(this.authService.getUserId());
   const orderRequests: Observable<IorderResponse>[] = [];
 
   this.cartItems.forEach((item, index) => {
@@ -139,21 +151,28 @@ submitOrder(): void {
       quantity: quantity,
     };
 
-     // Préparer chaque requête
-     orderRequests.push(this.cartserv.sendSingleOrder(order));
+    orderRequests.push(this.cartserv.sendSingleOrder(order));
   });
 
- // Envoyer toutes les commandes en parallèle
-    forkJoin(orderRequests).subscribe({
+  forkJoin(orderRequests).subscribe({
     next: (responses) => {
-    console.log('Toutes les commandes ont été envoyées avec succès:', responses);
-    this.cartserv.clearCart();
-    this.router.navigate(['/confirmation']);
-  },
-  error: (err) => {
-    console.error('Erreur lors de l\'envoi des commandes:', err);
+      console.log('Toutes les commandes ont été envoyées avec succès:', responses);
+      this.cartserv.clearCart();
+      this.orderSuccess = true;
+      // this.router.navigate(['/confirmation']);
+    },
+    error: (err) => {
+      console.error('Erreur lors de l\'envoi des commandes:', err);
+    }
+  });
+
+  // Fermer la modale
+  const modalElement = document.getElementById('confirmationModal');
+  if (modalElement) {
+    const modal = bootstrap.Modal.getInstance(modalElement);
+    modal?.hide();
   }
-});
 }
+
 
 }

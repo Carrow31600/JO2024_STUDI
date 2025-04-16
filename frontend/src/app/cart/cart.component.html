@@ -44,12 +44,6 @@
                 </div>
               </div>
             </div>
-
-
-
-
-
-
           </div>
       </div>
     </div>
@@ -57,8 +51,32 @@
 
 
     <!-- RECAPITULATIF DU PANIER -->
-    <div class="col-6 bg-warning">
-      col 2
+    <div class="col-6">
+      <div class="col-12">
+        <div class="card p-3 shadow-sm">
+          <h4 class="text-center mb-3">Récapitulatif de votre panier</h4>
+          <div class="d-flex justify-content-between">
+              <span>Nombre d’épreuves :</span>
+              <strong>{{ totalEpreuves }}</strong>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <span>Total billets :</span>
+            <strong>{{ totalBillets }}</strong> 
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <span>Montant total :</span>
+            <strong>{{ totalMontant }} €</strong>
+          </div>
+
+          <div class="mt-4">
+            <button class="btn btn-success w-100" (click)="submitOrder()" [disabled]="cardForms.length === 0">
+              Payer ma commande
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

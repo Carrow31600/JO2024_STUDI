@@ -64,7 +64,12 @@
               "buildOptimizer": true
             },
             "development": {
-              "sourceMap": true,
+              "sourceMap": {
+                "scripts": true,
+                "styles": false,
+                "vendor": false
+                },
+              "optimization": false,
               "buildOptimizer": false,
               "aot": false
             }

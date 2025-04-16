@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Iorder } from '../interfaces/order.interface';
+import { forkJoin, Observable } from 'rxjs';
+import { IorderResponse } from '../interfaces/orderresponse.interface';
 
 @Component({
   selector: 'app-cart',
@@ -54,6 +57,8 @@ export class CartComponent implements OnInit {
   
         // Mettre à jour le montant total
         form.get('montantTotal')?.setValue(montantTotal);
+
+        form.get('montantTotal')?.setValue(montantTotal, { emitEvent: false });
       });
   
       this.cardForms.push(form);
@@ -84,16 +89,64 @@ export class CartComponent implements OnInit {
     this.cartserv.setCart(this.cartItems);  // met à jour le panier dans le service
   }
   
-  // validation du panier
-  submitOrder(): void {
-    if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/login'], {
-        queryParams: { redirectTo: '/cart' }
-      });
-      return;
-    }
-  
+ 
 
-  
+  // Total des quantités de billets (toutes offres confondues)
+get totalBillets(): number {
+  return this.cardForms.reduce((total, form) => {
+    const quantite = form.get('quantite')?.value;
+    return total + (Number(quantite) || 0);
+  }, 0);
+}
+
+// Total du montant de la commande
+get totalMontant(): number {
+  return this.cardForms.reduce((total, form) => {
+    const montant = form.get('montantTotal')?.value;
+    return total + (Number(montant) || 0);
+  }, 0);
+}
+
+// Nombre d'épreuves distinctes dans le panier
+get totalEpreuves(): number {
+  const epreuves = this.cartItems.map(item =>
+    `${item.competition.sport_name}-${item.competition.site_name}-${item.competition.date}-${item.competition.hour}`
+  );
+
+  const uniqueEpreuves = new Set(epreuves);
+  return uniqueEpreuves.size;
+}
+
+// ENVOI DU PANIER AU BACKEND
+submitOrder(): void {
+  const userId = Number(this.authService.getUserId()); // Conversion string → number
+  const orderRequests: Observable<IorderResponse>[] = [];
+
+  this.cartItems.forEach((item, index) => {
+    const quantity = this.cardForms[index].get('quantite')?.value;
+
+    const order: Iorder = {
+      user: userId,
+      competition: item.competition.id!,
+      offer: item.offer.id!,
+      quantity: quantity,
+    };
+
+     // Préparer chaque requête
+     orderRequests.push(this.cartserv.sendSingleOrder(order));
+  });
+
+ // Envoyer toutes les commandes en parallèle
+    forkJoin(orderRequests).subscribe({
+    next: (responses) => {
+    console.log('Toutes les commandes ont été envoyées avec succès:', responses);
+    this.cartserv.clearCart();
+    this.router.navigate(['/confirmation']);
+  },
+  error: (err) => {
+    console.error('Erreur lors de l\'envoi des commandes:', err);
   }
+});
+}
+
 }

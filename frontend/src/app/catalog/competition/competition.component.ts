@@ -70,7 +70,10 @@ export class CompetitionComponent implements OnInit {
     const offer = this.offers.find(o => o.id === selectedOfferId);
 
     if (offer && competition) {
-      this.cartService.addToCart({ offer, competition });
+      this.cartService.addToCart({
+        offer, competition,
+        quantity: 0
+      });
       console.log('Ajouté au panier :', { offer, competition });
     } else {
       console.log('Veuillez sélectionner une offre.');

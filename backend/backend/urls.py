@@ -7,6 +7,7 @@ from offers.urls import router as offers_router
 from sites.urls import router as sites_router
 from sports.urls import router as sports_router
 from competition.urls import router as competition_router
+from orders.urls import router as orders_router
 from django.conf.urls.static import static
 
 
@@ -15,6 +16,7 @@ router.registry.extend(offers_router.registry)
 router.registry.extend(sites_router.registry)
 router.registry.extend(competition_router.registry)
 router.registry.extend(sports_router.registry)
+router.registry.extend(orders_router.registry)
 
 
 urlpatterns = [

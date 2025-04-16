@@ -31,6 +31,7 @@ export class AuthService {
           localStorage.setItem('refresh_token', response.refresh);
           localStorage.setItem('username', response.username);
           localStorage.setItem('email', response.email);
+          localStorage.setItem('id', response.id);
         }
         this.userSubject.next(response.username); // Mise à jour du BehaviorSubject
         console.log(`Utilisateur connecté : ${response.username}`);
@@ -52,7 +53,7 @@ export class AuthService {
         };
   
         return this.http.post<void>(
-          environment.loginApiUrl,
+          environment.logoutApiUrl,
           { refresh: refreshToken },
           headers
         ).pipe(
@@ -120,5 +121,11 @@ export class AuthService {
   isAuthenticated(): boolean {
     return this.isLoggedIn();
   }
+
+  getUserId(): string {
+    return localStorage.getItem('id') || ''; // Retourne l'ID en tant que chaîne
+  }
+  
+  
 }
 

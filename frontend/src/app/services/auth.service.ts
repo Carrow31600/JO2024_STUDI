@@ -13,6 +13,7 @@ export class AuthService {
   private apiUrl = environment.loginApiUrl; // URL API auth Django
   private userSubject = new BehaviorSubject<string | null>(null);
   user$ = this.userSubject.asObservable(); // Observable pour suivre l'état utilisateur
+  private registerApiUrl = environment.registerApiUrl; 
 
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: any) {
     // Vérifier si on est bien dans le navigateur avant d'utiliser localStorage
@@ -127,5 +128,13 @@ export class AuthService {
   }
   
   
+// register
+// auth.service.ts
+register(userData: { username: string, email: string, password: string, first_name: string, last_name: string }): Observable<any> {
+  return this.http.post<any>(this.registerApiUrl, userData);
+}
+
+
+
 }
 

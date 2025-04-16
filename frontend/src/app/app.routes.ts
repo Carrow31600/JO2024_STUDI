@@ -6,6 +6,7 @@ import { CartComponent } from './cart/cart.component';
 import { SitesComponent } from './catalog/sites/sites.component';
 import { SportsComponent } from './catalog/sports/sports.component';
 import { CompetitionComponent } from './catalog/competition/competition.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 export const routes: Routes = [
     {path : 'home', component : HomeComponent},
@@ -15,6 +16,7 @@ export const routes: Routes = [
     {path: 'competition', component: CompetitionComponent },
     {path: 'login', component: LoginComponent },
     {path: 'cart', component: CartComponent },
+    {path: 'register', component: RegisterComponent },
     {path : '', redirectTo : 'home', pathMatch : 'full'},
     {path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];

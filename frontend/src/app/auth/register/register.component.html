@@ -1,0 +1,55 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="username">Nom d'utilisateur</label>
+      <input id="username" formControlName="username">
+      <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+        Le nom d'utilisateur est requis et doit avoir au moins 3 caractères.
+      </div>
+    </div>
+  
+    <div>
+      <label for="email">Email</label>
+      <input id="email" formControlName="email">
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        L'email est requis et doit être valide.
+      </div>
+    </div>
+  
+    <div>
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" formControlName="password">
+      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        Le mot de passe est requis et doit avoir au moins 6 caractères.
+      </div>
+    </div>
+  
+    <div>
+      <label for="confirmPassword">Confirmer le mot de passe</label>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword">
+      <div *ngIf="registerForm.get('confirmPassword')?.hasError('match') && registerForm.get('confirmPassword')?.touched">
+        Les mots de passe ne correspondent pas.
+      </div>
+    </div>
+  
+    <div>
+      <label for="first_name">Prénom</label>
+      <input id="first_name" formControlName="first_name">
+      <div *ngIf="registerForm.get('first_name')?.invalid && registerForm.get('first_name')?.touched">
+        Le prénom est requis.
+      </div>
+    </div>
+  
+    <div>
+      <label for="last_name">Nom</label>
+      <input id="last_name" formControlName="last_name">
+      <div *ngIf="registerForm.get('last_name')?.invalid && registerForm.get('last_name')?.touched">
+        Le nom est requis.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="!registerForm.valid">S'inscrire</button>
+  
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+    <div *ngIf="successMessage">{{ successMessage }}</div>
+  </form>
+  

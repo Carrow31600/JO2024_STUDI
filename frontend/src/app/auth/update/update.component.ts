@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-update',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,RouterModule],
   templateUrl: './update.component.html',
 
 })
@@ -19,7 +20,8 @@ export class UpdateComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.updateForm = this.fb.group({
       first_name: ['', Validators.required],
@@ -47,6 +49,28 @@ export class UpdateComponent {
         },
         error: () => {
           this.errorMessage = 'Erreur lors de la mise à jour du profil.';
+        }
+      });
+    }
+  }
+
+  onDeleteAccount() {
+    if (confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.')) {
+      this.authService.deleteAccount().subscribe({
+        next: () => {
+          // ✅ 1. Suppression des infos de session
+          localStorage.removeItem('access_token');
+          localStorage.removeItem('refresh_token');
+          localStorage.removeItem('user');
+  
+          // ✅ 2. Message de confirmation
+          alert('Votre compte a bien été supprimé.');
+  
+          // ✅ 3. Redirection vers la page de login
+          this.router.navigate(['/login']);
+        },
+        error: () => {
+          this.errorMessage = 'Erreur lors de la suppression du compte.';
         }
       });
     }

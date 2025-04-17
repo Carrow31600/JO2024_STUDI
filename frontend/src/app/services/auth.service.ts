@@ -15,7 +15,7 @@ export class AuthService {
   user$ = this.userSubject.asObservable(); // Observable pour suivre l'état utilisateur
   private registerApiUrl = environment.registerApiUrl; 
   private updateApiUrl = environment.updateApiUrl; 
-
+  private deleteApiUrl = environment.deleteApiUrl; 
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: any) {
     // Vérifier si on est bien dans le navigateur avant d'utiliser localStorage
     if (isPlatformBrowser(this.platformId)) {
@@ -140,8 +140,10 @@ register(userData: { username: string, email: string, password: string, first_na
 updateProfile(data: any) {
   return this.http.put(this.updateApiUrl, data);
 }
-
-
+// supression compte utilisateur
+deleteAccount() {
+  return this.http.delete(this.deleteApiUrl);
+}
 
 }
 

@@ -50,3 +50,12 @@ class UserUpdateView(APIView):
             serializer.save()
             return Response({'message': 'Profil mis à jour avec succès'}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#SUPPRESSION COMPTE UTILISATEUR
+class DeleteAccountView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request):
+        user = request.user
+        user.delete()
+        return Response({"message": "Compte supprimé avec succès."}, status=status.HTTP_204_NO_CONTENT)

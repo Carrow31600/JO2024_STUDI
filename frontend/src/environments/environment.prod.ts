@@ -8,6 +8,7 @@ export const environment = {
     logoutApiUrl : 'https://carrow31600.pythonanywhere.com/auth/logout/',
     orderApiUrl : 'https://carrow31600.pythonanywhere.com/order/',
     registerApiUrl: 'https://carrow31600.pythonanywhere.com/auth/register/',
-    updateApiUrl: 'https://carrow31600.pythonanywhere.com/auth/update/'
+    updateApiUrl: 'https://carrow31600.pythonanywhere.com/auth/update/',
+    deleteApiUrl: 'https://carrow31600.pythonanywhere.com/delete/',
   };
   

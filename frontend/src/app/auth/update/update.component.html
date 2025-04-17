@@ -19,6 +19,10 @@
   <button type="submit" [disabled]="updateForm.invalid">Enregistrer</button>
 </form>
 
+<button (click)="onDeleteAccount()" class="btn btn-danger">
+  Supprimer mon compte
+</button>
+
 <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
 <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
 

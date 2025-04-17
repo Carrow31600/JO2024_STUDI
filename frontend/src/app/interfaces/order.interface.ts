@@ -3,4 +3,5 @@ export interface Iorder {
   competition: number;
   offer: number;
   quantity: number;
+  paid : boolean
 }

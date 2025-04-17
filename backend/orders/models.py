@@ -10,7 +10,7 @@ class Order(models.Model) :
     competition = models.ForeignKey(Competition, on_delete=models.CASCADE)
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
     quantity = models.IntegerField()
-    # paid = models.BooleanField()
+    paid = models.BooleanField()
     # orderkey = models.CharField(max_length=50,  blank=True, null=True)
 
 

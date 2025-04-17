@@ -1,24 +1,23 @@
 <div>
-    <h2>Panier</h2>
-    <div *ngIf="orderSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
-      ✅ Votre commande a été envoyée avec succès !
-      <button type="button" class="btn-close" aria-label="Fermer" (click)="orderSuccess = false"></button>
-    </div>
+  <h2>Panier</h2>
+  <div *ngIf="orderSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+    ✅ Votre commande a été envoyée avec succès !
+    <button type="button" class="btn-close" aria-label="Fermer" (click)="orderSuccess = false"></button>
+  </div>
 
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div *ngIf="cartItems.length > 0 && cardForms.length === cartItems.length; else noItems">
 
-<div class="container">
-  <div class="row">
-    <div class="col-6">
-      <div *ngIf="cartItems.length > 0 && cardForms.length === cartItems.length; else noItems">
-
-        <div *ngFor="let item of cartItems; let i = index">
+          <div *ngFor="let item of cartItems; let i = index">
             <div class="card mb-3">
               <div class="row g-0">
                 <div>
                   <div class="card-body">
-                    <div class = 'd-flex'>
-                      <p class="card-title fw-bold" >{{ item.offer.name }} - {{ item.competition.sport_name }}</p>
-                      <p class="card-text fw-semibold"> - {{ item.competition.site_name }} le {{ item.competition.date }} à {{item.competition.hour}}</p>
+                    <div class="d-flex">
+                      <p class="card-title fw-bold">{{ item.offer.name }} - {{ item.competition.sport_name }}</p>
+                      <p class="card-text fw-semibold"> - {{ item.competition.site_name }} le {{ item.competition.date }} à {{ item.competition.hour }}</p>
                     </div>
                     <form [formGroup]="cardForms[i]">
                       <div class="row align-items-center">
@@ -48,51 +47,48 @@
               </div>
             </div>
           </div>
+
+        </div>
       </div>
-    </div>
 
-
-
-    <!-- RECAPITULATIF DU PANIER -->
-    <div class="col-6">
-      <div class="col-12">
-        <div class="card p-3 shadow-sm">
-          <h4 class="text-center mb-3">Récapitulatif de votre panier</h4>
-          <div class="d-flex justify-content-between">
+      <!-- RECAPITULATIF DU PANIER -->
+      <div class="col-6">
+        <div class="col-12">
+          <div class="card p-3 shadow-sm">
+            <h4 class="text-center mb-3">Récapitulatif de votre panier</h4>
+            <div class="d-flex justify-content-between">
               <span>Nombre d’épreuves :</span>
               <strong>{{ totalEpreuves }}</strong>
-          </div>
+            </div>
 
-          <div class="d-flex justify-content-between">
-            <span>Total billets :</span>
-            <strong>{{ totalBillets }}</strong> 
-          </div>
+            <div class="d-flex justify-content-between">
+              <span>Total billets :</span>
+              <strong>{{ totalBillets }}</strong>
+            </div>
 
-          <div class="d-flex justify-content-between">
-            <span>Montant total :</span>
-            <strong>{{ totalMontant }} €</strong>
-          </div>
+            <div class="d-flex justify-content-between">
+              <span>Montant total :</span>
+              <strong>{{ totalMontant }} €</strong>
+            </div>
 
-          <div class="mt-4">
-            <button class="btn btn-success w-100" (click)="submitOrder()" [disabled]="cardForms.length === 0">
-              Valider mon panier
-            </button>
+            <div class="mt-4">
+              <button class="btn btn-success w-100" (click)="submitOrder()" [disabled]="cardForms.length === 0">
+                Valider mon panier
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Affichage d'un message si le panier est vide -->
+  <ng-template #noItems>
+    <p>Votre panier est vide.</p>
+  </ng-template>
 </div>
 
-    <!-- Affichage d'un message si le panier est vide -->
-    <ng-template #noItems>
-      <p>Votre panier est vide.</p>
-    </ng-template>
-  </div>
-  
-
-
- <!-- Modale de confirmation -->
+<!-- Modale de confirmation -->
 <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -101,7 +97,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Êtes-vous sûr de vouloir valider votre panier et procéder au paiement ?
+        Êtes-vous sûr de vouloir valider votre panier ?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
@@ -110,3 +106,24 @@
     </div>
   </div>
 </div>
+
+<!-- Modale de paiement -->
+<div class="modal fade" id="paymentChoiceModal" tabindex="-1" aria-labelledby="paymentChoiceModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="paymentChoiceModalLabel">Souhaitez-vous procéder au paiement ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Êtes-vous prêt à procéder au paiement pour valider votre commande ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary" (click)="processPayment()">Payer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

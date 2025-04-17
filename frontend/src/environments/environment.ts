@@ -9,6 +9,7 @@ export const environment = {
     orderApiUrl :  'http://127.0.0.1:8000/order/',
     registerApiUrl: 'http://127.0.0.1:8000/auth/register/',
     updateApiUrl: 'http://127.0.0.1:8000/auth/update/',
-    deleteApiUrl: 'http://127.0.0.1:8000/auth/delete/'
+    deleteApiUrl: 'http://127.0.0.1:8000/auth/delete/',
+    mockpaymentApiUrl: 'http://127.0.0.1:8000/mockpayment/create/',
   };
   

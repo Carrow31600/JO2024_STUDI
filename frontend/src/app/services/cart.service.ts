@@ -7,7 +7,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Iorder } from '../interfaces/order.interface';
 import { CartItem } from '../interfaces/cart.interface';
-import { IorderResponse } from '../interfaces/orderresponse.interface';
+import { IorderResponse } from '../interfaces/orderResponse.interface';
+
+
 
 
 
@@ -18,6 +20,7 @@ import { IorderResponse } from '../interfaces/orderresponse.interface';
 export class CartService {
   private cart: CartItem[] = []; // stockage des offres mises dans le panier dans "cart"
   readonly apiUrl = environment.orderApiUrl;
+  readonly mockapiUrl = environment.mockpaymentApiUrl;
 
   constructor(private http: HttpClient) {}
   // ajout d'une offre au panier
@@ -48,11 +51,17 @@ export class CartService {
     return this.http.post<IorderResponse>(this.apiUrl, order);
   }
   
+// Paiement
+mockPayment(orderId: number, amount: number) {
+  return this.http.post(this.mockapiUrl, {
+    order_id: orderId,
+    amount: amount
+  });
+}
 
-
-
-
-
-
+// Mise à jour commande
+updateOrder(orderId: number, data: any) {
+  return this.http.patch(`${this.apiUrl}${orderId}/`, data);
+}
 
 }

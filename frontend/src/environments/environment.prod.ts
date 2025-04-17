@@ -6,7 +6,8 @@ export const environment = {
     sportApiUrl : 'https://carrow31600.pythonanywhere.com/sport/',
     loginApiUrl : 'https://carrow31600.pythonanywhere.com/auth/login/',
     logoutApiUrl : 'https://carrow31600.pythonanywhere.com/auth/logout/',
-    orderApiUrl : 'https://carrow31600.pythonanywhere.com/order/'
-    registerApiUrl: 'https://carrow31600.pythonanywhere.com/auth/register/'
+    orderApiUrl : 'https://carrow31600.pythonanywhere.com/order/',
+    registerApiUrl: 'https://carrow31600.pythonanywhere.com/auth/register/',
+    updateApiUrl: 'https://carrow31600.pythonanywhere.com/auth/update/'
   };
   

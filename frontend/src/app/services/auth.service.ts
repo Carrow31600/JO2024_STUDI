@@ -14,6 +14,7 @@ export class AuthService {
   private userSubject = new BehaviorSubject<string | null>(null);
   user$ = this.userSubject.asObservable(); // Observable pour suivre l'état utilisateur
   private registerApiUrl = environment.registerApiUrl; 
+  private updateApiUrl = environment.updateApiUrl; 
 
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: any) {
     // Vérifier si on est bien dans le navigateur avant d'utiliser localStorage
@@ -132,6 +133,12 @@ export class AuthService {
 // auth.service.ts
 register(userData: { username: string, email: string, password: string, first_name: string, last_name: string }): Observable<any> {
   return this.http.post<any>(this.registerApiUrl, userData);
+}
+
+
+// modification compte utilisateur
+updateProfile(data: any) {
+  return this.http.put(this.updateApiUrl, data);
 }
 
 

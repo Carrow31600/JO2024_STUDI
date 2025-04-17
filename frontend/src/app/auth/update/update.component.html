@@ -1,0 +1,24 @@
+<h2>Modifier mon profil</h2>
+
+<form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+  <label>
+    Prénom :
+    <input formControlName="first_name" />
+  </label>
+
+  <label>
+    Nom :
+    <input formControlName="last_name" />
+  </label>
+
+  <label>
+    Email :
+    <input formControlName="email" type="email" />
+  </label>
+
+  <button type="submit" [disabled]="updateForm.invalid">Enregistrer</button>
+</form>
+
+<p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+<p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+

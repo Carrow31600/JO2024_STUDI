@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import status
+from .serializer import UserUpdateSerializer
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -33,4 +34,19 @@ class RegisterView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response({'message': 'Compte créé avec succès'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+
+
+
+# MODIFICATION COMPTE UTILISATEUR
+class UserUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request):
+        serializer = UserUpdateSerializer(request.user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Profil mis à jour avec succès'}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

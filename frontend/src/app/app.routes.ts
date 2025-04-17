@@ -7,6 +7,7 @@ import { SitesComponent } from './catalog/sites/sites.component';
 import { SportsComponent } from './catalog/sports/sports.component';
 import { CompetitionComponent } from './catalog/competition/competition.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { UpdateComponent } from './auth/update/update.component';
 
 export const routes: Routes = [
     {path : 'home', component : HomeComponent},
@@ -15,6 +16,7 @@ export const routes: Routes = [
     {path: 'sport', component: SportsComponent },
     {path: 'competition', component: CompetitionComponent },
     {path: 'login', component: LoginComponent },
+    {path: 'update', component: UpdateComponent },
     {path: 'cart', component: CartComponent },
     {path: 'register', component: RegisterComponent },
     {path : '', redirectTo : 'home', pathMatch : 'full'},

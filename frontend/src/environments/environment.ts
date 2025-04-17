@@ -7,6 +7,7 @@ export const environment = {
     loginApiUrl : 'http://127.0.0.1:8000/auth/login/',
     logoutApiUrl : 'http://127.0.0.1:8000/auth/logout/',
     orderApiUrl :  'http://127.0.0.1:8000/order/',
-    registerApiUrl: 'http://127.0.0.1:8000/auth/register/'
+    registerApiUrl: 'http://127.0.0.1:8000/auth/register/',
+    updateApiUrl: 'http://127.0.0.1:8000/auth/update/'
   };
   

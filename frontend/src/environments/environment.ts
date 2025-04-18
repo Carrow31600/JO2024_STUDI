@@ -11,5 +11,6 @@ export const environment = {
     updateApiUrl: 'http://127.0.0.1:8000/auth/update/',
     deleteApiUrl: 'http://127.0.0.1:8000/auth/delete/',
     mockpaymentApiUrl: 'http://127.0.0.1:8000/mockpayment/create/',
+
   };
   

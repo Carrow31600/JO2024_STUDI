@@ -1,0 +1,11 @@
+<div *ngIf="orders?.length > 0; else noOrders">
+  <h2>Vos Commandes</h2>
+  <ul>
+    <li *ngFor="let order of orders">
+      Commande - Payée: {{ order.paid }} - Quantité: {{ order.quantity }}
+    </li>
+  </ul>
+</div>
+<ng-template #noOrders>
+  <p>Aucune commande trouvée.</p>
+</ng-template>

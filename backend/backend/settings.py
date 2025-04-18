@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django_filters',
     'orders',
     'mockpayment',
+    'tickets',
 ]
 
 MIDDLEWARE = [

@@ -2,8 +2,10 @@
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from django.contrib.auth.models import User
+
+from utils.securitukey import generate_secure_key
 from .models import userProfil
-from .utils import generate_secure_key
+
 
 # Modification du serializer natif pour y ajouter des champs du model user afin de renvoyer les infos
 # de l'utilisateur en même temps que le token et éviter de créer une méthode spécifique pour le renvoi des infos user

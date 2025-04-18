@@ -6,5 +6,5 @@ class OrderSerializer (serializers.ModelSerializer) :
     class Meta : 
         model = Order
         fields = '__all__'
-        # exclude = ('orderkey',) 
+        read_only_fields = ['orderkey'] 
 

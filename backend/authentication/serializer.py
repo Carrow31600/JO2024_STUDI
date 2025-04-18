@@ -39,10 +39,8 @@ class RegisterSerializer(serializers.ModelSerializer):
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
         )
-        userProfil.objects.create(
-            account=user,
-            userkey=generate_secure_key()
-        )
+        # La clé userkey sera générée automatiquement lors du save du profil
+        user_profil = userProfil.objects.create(account=user)  # La userkey est générée lors du save du profil
         return user
     
 

@@ -11,5 +11,6 @@ export const environment = {
     updateApiUrl: 'https://carrow31600.pythonanywhere.com/auth/update/',
     deleteApiUrl: 'https://carrow31600.pythonanywhere.com/delete/',
     mockpaymentApiUrl: 'https://carrow31600.pythonanywhere.com/mockpayment/create/',
+    ticketApiUrl: 'https://carrow31600.pythonanywhere.com/ticket/',
   };
   

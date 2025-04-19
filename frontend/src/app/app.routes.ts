@@ -9,6 +9,7 @@ import { CompetitionComponent } from './catalog/competition/competition.componen
 import { RegisterComponent } from './auth/register/register.component';
 import { UpdateComponent } from './auth/update/update.component';
 import { OrderComponent } from './order/order.component';
+import { TicketComponent } from './ticket/ticket.component';
 
 export const routes: Routes = [
     {path : 'home', component : HomeComponent},
@@ -21,6 +22,7 @@ export const routes: Routes = [
     {path: 'cart', component: CartComponent },
     {path: 'register', component: RegisterComponent },
     {path: 'order', component: OrderComponent },
+    {path: 'ticket/:id', component: TicketComponent }, 
     {path : '', redirectTo : 'home', pathMatch : 'full'},
     {path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];

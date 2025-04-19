@@ -1,0 +1,5 @@
+<ng-container *ngIf="ticket$ | async as ticket">
+    <h2>QR Code du ticket #{{ ticket.id }}</h2>
+    <img [src]="ticket.qr_code" alt="QR Code" style="max-width: 300px;" />
+  </ng-container>
+  

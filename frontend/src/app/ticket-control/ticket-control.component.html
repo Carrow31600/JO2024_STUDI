@@ -1,0 +1,7 @@
+<div class="ticket-control">
+    <button (click)="fetchTicket()">Get Ticket</button>
+    <div *ngIf="ticket">
+      <img [src]="ticket.qr_code" alt="QR Code">
+    </div>
+  </div>
+  

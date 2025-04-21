@@ -12,6 +12,7 @@ export const environment = {
     deleteApiUrl: 'http://127.0.0.1:8000/auth/delete/',
     mockpaymentApiUrl: 'http://127.0.0.1:8000/mockpayment/create/',
     ticketApiUrl: 'http://127.0.0.1:8000/ticket/',
+    controlTicketApiUrl: 'http://127.0.0.1:8000/controleticket/',
 
   };
   

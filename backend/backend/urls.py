@@ -10,6 +10,7 @@ from competition.urls import router as competition_router
 from orders.urls import router as orders_router
 from tickets.urls import router as tickets_router
 from mockpayment.urls import router as mockpayment_router
+from ticket_control.urls import router as ticket_control_router
 from django.conf.urls.static import static
 
 
@@ -21,6 +22,8 @@ router.registry.extend(sports_router.registry)
 router.registry.extend(tickets_router.registry)
 router.registry.extend(orders_router.registry)
 router.registry.extend(mockpayment_router.registry)
+router.registry.extend(ticket_control_router.registry)
+
 
 
 urlpatterns = [

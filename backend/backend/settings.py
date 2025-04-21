@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'orders',
     'mockpayment',
     'tickets',
+    'ticket_control',
 ]
 
 MIDDLEWARE = [

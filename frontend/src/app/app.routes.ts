@@ -10,6 +10,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { UpdateComponent } from './auth/update/update.component';
 import { OrderComponent } from './order/order.component';
 import { TicketComponent } from './ticket/ticket.component';
+import { TicketControlComponent } from './ticket-control/ticket-control.component'; 
 
 export const routes: Routes = [
     {path : 'home', component : HomeComponent},
@@ -23,6 +24,7 @@ export const routes: Routes = [
     {path: 'register', component: RegisterComponent },
     {path: 'order', component: OrderComponent },
     {path: 'ticket/:id', component: TicketComponent }, 
+    {path: 'control-ticket', component: TicketControlComponent },
     {path : '', redirectTo : 'home', pathMatch : 'full'},
     {path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];

@@ -11,7 +11,11 @@ export class ControleTicketService {
 
   constructor(private http: HttpClient) {}
 
-  getTicket(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  getTicketByStatus(status: boolean): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}?status=${status}`);
+  }
+
+  getNonexistentTicket(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}?status=invalid`);
   }
 }

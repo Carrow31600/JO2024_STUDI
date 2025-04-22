@@ -16,16 +16,27 @@ export class TicketControlComponent {
 
   constructor(private controleticketService: ControleTicketService) {}
 
-  fetchTicket() {
-    this.controleticketService.getTicket().subscribe(
+  fetchTicketByStatus(status: boolean) {
+    this.controleticketService.getTicketByStatus(status).subscribe(
       data => {
-        console.log('Ticket data:', data); // Vérifiez la réponse de l'API
+        console.log('Ticket data:', data);
         this.ticket = data;
-
-        console.log('QR Code URL:', this.ticket.qr_code); // Vérifiez l'URL du QR code
       },
       error => {
         console.error('Error fetching ticket', error);
+      }
+    );
+  }
+
+  fetchNonexistentTicket() {
+    this.controleticketService.getNonexistentTicket().subscribe(
+      data => {
+        this.ticket = data;
+      },
+      error => {
+        console.error('No ticket found', error);
+        this.ticket = null;
+        alert('Aucun ticket correspondant trouvé.');
       }
     );
   }

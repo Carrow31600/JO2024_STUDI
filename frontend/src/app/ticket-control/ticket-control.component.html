@@ -1,7 +1,12 @@
 <div class="ticket-control">
-    <button (click)="fetchTicket()">Get Ticket</button>
-    <div *ngIf="ticket">
-      <img [src]="ticket.qr_code" alt="QR Code">
-    </div>
+  <button (click)="fetchTicketByStatus(false)">Get Unused Ticket</button>
+  <button (click)="fetchTicketByStatus(true)">Get Used Ticket</button>
+  <button (click)="fetchNonexistentTicket()">Get Nonexistent Ticket</button>
+
+  <div *ngIf="ticket">
+    <img [src]="ticket.qr_code" alt="QR Code">
   </div>
-  
+</div>
+
+
+

@@ -6,7 +6,10 @@ from tickets.models import Ticket
 
 class ControlTicketViewSet(viewsets.ViewSet):
     def list(self, request, *args, **kwargs):
-        ticket = Ticket.objects.filter(status=False).first()
+        status_param = request.query_params.get('status', 'false').lower()
+        status_value = True if status_param == 'true' else False
+
+        ticket = Ticket.objects.filter(status=status_value).first()
         if ticket:
             serializer = TicketSerializer(ticket, context={'request': request})
             return Response(serializer.data, status=status.HTTP_200_OK)
